@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketService {
-  private baseUrl = 'http://localhost:8090/ticket';
+  private baseUrl = 'http://localhost:8090/Pocker/ticket';
 
   constructor(private http: HttpClient) { }
 

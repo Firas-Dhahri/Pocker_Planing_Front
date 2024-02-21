@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from 'express';
+import { ToastrService } from 'ngx-toastr';
 import { TicketService } from 'src/app/services/ticket.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class UpdateticketComponent implements OnInit   {
   ticketForm: FormGroup;
   issueKey!:string | null;
   ticketdetail:any;
-  constructor(private formBuilder: FormBuilder, private ticketService: TicketService,private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private ticketService: TicketService,private route: ActivatedRoute,private toastr: ToastrService) {
     this.ticketForm = this.formBuilder.group({
       key: ['', Validators.required], // Include key field in the form
       fields: this.formBuilder.group({
@@ -57,6 +58,8 @@ onSubmit() {
     this.ticketService.updateIssueByKey( this.issueKey, this.ticketForm.value).subscribe(
       (response) => {
         console.log('Ticket updated successfully:', response);
+        this.toastr.success('Ticket Updated successfully:','Succes');
+
       },
       (error) => {
         console.error('Error update ticket:', error);

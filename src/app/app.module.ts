@@ -9,7 +9,10 @@ import { AfficherTicketrComponent } from './components/afficher-ticket/afficher-
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AjouterticketComponent } from './components/ajouterticket/ajouterticket.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateticketComponent } from './components/updateticket/updateticket.component'; // Import ReactiveFormsModule
+import { UpdateticketComponent } from './components/updateticket/updateticket.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -17,14 +20,15 @@ import { UpdateticketComponent } from './components/updateticket/updateticket.co
     NavbarComponent,
     AfficherTicketrComponent,
     AjouterticketComponent,
-    UpdateticketComponent
+    UpdateticketComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule // ToastrModule added
     
   ],
   providers: [DatePipe],

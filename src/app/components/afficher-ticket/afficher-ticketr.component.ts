@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { TicketService } from 'src/app/services/ticket.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { TicketService } from 'src/app/services/ticket.service';
 export class AfficherTicketrComponent implements OnInit {
   tickets: any[] = [];
 
-  constructor(private ticketService: TicketService) { }
+  constructor(private ticketService: TicketService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAllTickets();
@@ -26,18 +27,19 @@ export class AfficherTicketrComponent implements OnInit {
       }
     );
   }
-  deleteIssue(key:string | null){
+  deleteIssue(key: string | null) {
     this.ticketService.deleteIssue(key).subscribe(
-      (response) => { // Change the type of response to match what you expect
-               console.log('Tickets deleted');
+      (response) => {
+        console.log('Ticket deleted');
+        this.toastr.success('Ticket deleted successfully:', 'Deleted');
+        // Update the tickets array by removing the deleted item
+        this.tickets = this.tickets.filter(ticket => ticket.key !== key);
       },
       (error) => {
-        console.error('Error deleting tickets:',error);
+        console.error('Error deleting ticket:', error);
       }
-
     );
   }
-
 
 
 }
