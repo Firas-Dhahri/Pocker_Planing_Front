@@ -1,0 +1,10 @@
+<!-- auth.component.html -->
+<div class="login">
+  <label for="username">Nom d'utilisateur</label>
+  <input type="text" id="username" [(ngModel)]="username">
+  
+  <label for="password">Mot de passe</label>
+  <input type="password" id="password" [(ngModel)]="password">
+  
+  <button (click)="login()">Connexion</button>
+</div>

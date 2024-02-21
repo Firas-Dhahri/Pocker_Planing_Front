@@ -1,0 +1,57 @@
+<div class="user-container">
+  <h2>Liste des Utilisateurs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom d'utilisateur</th>
+        <th>Email</th>
+        <th>Mot de passe</th>
+        <th>Rôles</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users" [class.selected-user]="user === selectedUser">
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.password }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let role of user.roles">{{ role.name }}</li>
+          </ul>
+        </td>
+        <td>
+          <button (click)="selectUser(user)">Sélectionner</button>
+          <br><br>
+          <button (click)="deleteUser(user.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+
+  <div class="fade-in">
+    <h2>{{ selectedUser.id ? 'Modifier l\'utilisateur' : 'Ajouter un utilisateur' }}</h2>
+    <form (ngSubmit)="selectedUser.id ? updateUser() : createUser()">
+      <label for="username">Nom d'utilisateur:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="selectedUser.username" required>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" [(ngModel)]="selectedUser.email" required>
+
+      <label for="password">Mot de passe:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="selectedUser.password" required>
+
+      <!-- Ajout de la liste déroulante pour les rôles -->
+      <label for="roles">Rôles:</label>
+<select id="roles" name="roles" multiple [(ngModel)]="selectedUserRoles">
+  <option *ngFor="let role of roles" [value]="role">{{ role.name }}</option>
+</select>
+
+      <!-- Add additional fields if necessary -->
+
+      <br><br><br>
+      <button type="submit">{{ selectedUser.id ? 'Mettre à jour' : 'Ajouter' }}</button>
+    </form>
+  </div>
+</div>
