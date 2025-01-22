@@ -8,10 +8,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AfficherTicketrComponent } from './components/afficher-ticket/afficher-ticketr.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AjouterticketComponent } from './components/ajouterticket/ajouterticket.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateticketComponent } from './components/updateticket/updateticket.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AfficherSprintsComponent } from './components/afficher-sprints/afficher-sprints.component';
+import { AjoutersprintComponent } from './components/ajoutersprint/ajoutersprint.component';
+import { UpdatesprintComponent } from './components/updatesprint/updatesprint.component';
 
 
 @NgModule({
@@ -21,6 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AfficherTicketrComponent,
     AjouterticketComponent,
     UpdateticketComponent,
+    AfficherSprintsComponent,
+    AjoutersprintComponent,
+    UpdatesprintComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +35,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule // ToastrModule added
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
+    FormsModule
     
+  
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

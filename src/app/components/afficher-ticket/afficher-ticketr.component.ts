@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { TicketService } from 'src/app/services/ticket.service';
 
@@ -10,10 +11,15 @@ import { TicketService } from 'src/app/services/ticket.service';
 export class AfficherTicketrComponent implements OnInit {
   tickets: any[] = [];
 
-  constructor(private ticketService: TicketService,private toastr: ToastrService) { }
+  constructor(private ticketService: TicketService,private toastr: ToastrService ,private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getAllTickets();
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
   }
 
   getAllTickets() {

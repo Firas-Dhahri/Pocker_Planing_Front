@@ -14,6 +14,7 @@ export class UpdateticketComponent implements OnInit   {
   ticketForm: FormGroup;
   issueKey!:string | null;
   ticketdetail:any;
+
   constructor(private formBuilder: FormBuilder, private ticketService: TicketService,private route: ActivatedRoute,private toastr: ToastrService) {
     this.ticketForm = this.formBuilder.group({
       key: ['', Validators.required], // Include key field in the form

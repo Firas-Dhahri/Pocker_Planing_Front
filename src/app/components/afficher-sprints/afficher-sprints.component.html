@@ -1,0 +1,53 @@
+<ngx-spinner type="ball-scale-multiple">
+</ngx-spinner>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row mb-4 mt-4">
+        <div class="col">
+          <h2 class="mb-4">Sprints</h2>
+        </div>
+        <div class="col-auto ml-auto">
+          <button class="btn btn-rounded mt-4 btn-success" routerLink="/ajoutersprint">Ajouter Sprint</button>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="form-group"> <!-- Added form-group class -->
+            <label for="boardSelect">Select a board:</label>
+            <select id="boardSelect" class="form-control" [(ngModel)]="selectedBoardName" (ngModelChange)="loadSprints()">
+              <option *ngFor="let name of boardNames" [value]="name">{{ name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
+      <table class="table">
+        <thead class="bg-primary text-white">
+          <tr>
+            <th>State</th>
+            <th>Name</th>
+            <th>Goal</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="border border-primary">
+          <tr *ngFor="let sprint of sprints">
+            <td>{{ sprint.state }}</td>
+            <td>{{ sprint.name }}</td>
+            <td>{{ sprint.goal }}</td>
+            <td>{{ sprint.startDate }}</td>
+            <td>{{ sprint.endDate }}</td>
+            <td>
+              <button class="btn btn-rounded btn-primary m-2" [routerLink]="['/updatesprint', sprint.id]">Update</button>
+              <button class="btn btn-rounded btn-danger m-2" (click)="deleteSprint(sprint.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
